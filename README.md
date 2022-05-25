@@ -47,6 +47,29 @@ mvn test
 
 mvn spring-boot:run
 
+### Run on local k8s
+deploy.yaml file is for kubernetes and it will automatically pick up the configuration
+to do this execute
+kubectl apply -f deploy.yaml
+
+Navigate to the url http:// localhost:30040
+
+Opening an account
+```curl
+curl --location --request POST 'http://localhost:8081/account/open' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"customerId": "2",
+"initialCredit": 100
+}'
+```
+
+Retrieving user information
+```curl
+curl --location --request GET 'http://localhost:8081/customer/info/{customerId}' \
+--header 'Content-Type: application/json'
+```
+
 ### Docker
 to create the docker image execute the following commands
 mvn clean package
